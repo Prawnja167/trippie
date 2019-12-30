@@ -105,23 +105,7 @@
                     <h4></h4>
                 </div>
             </div>
-            <div id="drag1" draggable="true" ondragstart="drag(event)">
-                <h4 id="drag1-activity"></h4>
-                <div class="hidden">
-                    <h4 id="drag1-price"></h4>
-                    <h4 id="drag1-duration"></h4>
-                    <h4 id="drag1-address"></h4>
-                </div>
-            </div>
             
-            <div id="drag2" draggable="true" ondragstart="drag(event)">
-                <h4 id="drag2-activity"></h4>
-                <div class="hidden">
-                    <h4 id="drag2-price"></h4>
-                    <h4 id="drag2-duration"></h4>
-                    <h4 id="drag2-address"></h4>
-                </div>
-            </div>
             <div id="drag3" draggable="true" ondragstart="drag(event)">
                 <h4 id="drag3-activity"></h4>
                 <div class="hidden">
