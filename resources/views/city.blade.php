@@ -110,7 +110,7 @@
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
-				      				<h5>{{$place->name}}</h5>
+									<h5><a href="{{url('place/'.$place->id)}}">{{$place->name}}</a></h5>
 				      			</div>
 				   	 		</div>
 						@endif
@@ -124,7 +124,7 @@
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
-				      				<h5>{{$place->name}}</h5>
+									<h5><a href="{{url('place/'.$place->id)}}">{{$place->name}}</a></h5>
 				      			</div>
 				   	 		</div>
 						@endif
@@ -138,7 +138,7 @@
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
-				      				<h5>{{$place->name}}</h5>
+									<h5><a href="{{url('place/'.$place->id)}}">{{$place->name}}</a></h5>
 				      			</div>
 				   	 		</div>
 						@endif

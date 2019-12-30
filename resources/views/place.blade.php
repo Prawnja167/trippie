@@ -228,12 +228,16 @@
 			<div class="container-fluid recommendation" style="padding-top: 0px;">
 				<h2 style="font-weight: bolder;">Recommendation</h2>
 				@foreach($recs as $rec)
+				@if($rec)
+				<a href="{{url('place/'.$rec->id)}}">
 				<div class="recommend-pic" style="background-image: url('../images/{{$rec->image}}');">
 					<div class="recommend-title">
 						<h4 style="margin-top:0px;">{{$rec->name}}</h4>
 						<h5 style="margin-bottom:0px;">Rating : {{$rec->rating}} </h5>
 					</div>
 				</div>
+				</a>
+				@endif
 				@endforeach
 			</div>
 		</div>
