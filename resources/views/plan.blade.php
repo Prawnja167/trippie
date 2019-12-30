@@ -85,12 +85,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($activities as $activity)
+                    <tr>
+                        <td>{{$activity->start_time}}</td>
+                        <td>{{$activity->end_time}}</td>
+                        <td>{{$activity->price}}</td>
+                        <td>{{$activity->activity}}</td>
+                    </tr>
+                    @endforeach
+                    @if (!$activities)
                     <tr id="row1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event)">
                         <td id="start1"></td>
                         <td id="end1"></td>
                         <td id="price1">-</td>
                         <td id="description1"></td>                  
                     </tr>
+                    @endif
                 </tbody>
             </table>
             <div>
@@ -101,7 +111,10 @@
                     <input type="hidden" id="db-cost" name="cost">
                     <input type="hidden" id="db-place" name="place">
                     <input type="hidden" id="db-date" name="date">
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <input type="hidden" id="activity-date" value="{{$activities[0]->date_holiday_id}}">
+                    {{-- @if($activities[0]->date_holiday_id == 18) --}}
+                    <button id="submit-button" type="submit" class="btn btn-success">Save</button>
+                    {{-- @endif --}}
                 </form>
             </div>
         </div>
@@ -128,6 +141,15 @@
     var db_end = []
     var db_activity = []
     var db_cost = []
+
+    $(document).ready(function() {
+        var activity_date = document.getElementById("activity-date").value
+        var selected_date = document.getElementById("input").value
+        console.log(selected_date)
+        if (activity_date == selected_date) {
+            document.getElementById("submit-button").remove()
+        }
+    });
 
     function allowDrop(ev) {
       ev.preventDefault();

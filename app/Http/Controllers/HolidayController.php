@@ -108,17 +108,20 @@ class HolidayController extends Controller
         $holiday['end'] = $holiday['date'][count($holidayDate)-1]['date'];
         
         
-        $activities = DB::table('holidays')
-                    ->join('date_holidays','holidays.id','=','date_holidays.holiday_id')
-                    ->join('holiday_details','date_holidays.id','=','holiday_details.date_holiday_id')
-                    ->where('holiday_id',$id)
-                    ->where('user_id',Auth::user()->id)
-                    ->get();
+        // $activities = DB::table('holidays')
+        //             ->join('date_holidays','holidays.id','=','date_holidays.holiday_id')
+        //             ->join('holiday_details','date_holidays.id','=','holiday_details.date_holiday_id')
+        //             ->where('holiday_id',$id)
+        //             ->where('user_id',Auth::user()->id)
+        //             ->get();
 
         $wishlists = DB::table('wishlists')
         ->join('places','places.id','=','wishlists.place_id')
         ->where('user_id',Auth::user()->id)
         ->get();
+
+        $activities = HolidayDetail::all();
+        // dd($activities);
         
         return view('plan',compact('holiday','activities','wishlists'));
     }
