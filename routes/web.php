@@ -11,13 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','IndexController@index');
+Route::get('/city/{city}','IndexController@city');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/list/{list}/detail','HolidayDetailController');
-Route::resource('/list','HolidayController');
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::resource('/list/{list}/detail','HolidayDetailController');
+    Route::resource('/list','HolidayController');
+});
 
+Route::resource('/place','PlaceController');	
+Route::resource('/place/{place}/activities','PlaceAttractionController');
+
+Route::post('/wishlist/{wishlist}','WishlistController@addWishlist');

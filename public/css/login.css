@@ -1,0 +1,90 @@
+body{
+	background-image: url('../Images/BNCCEzWinBack.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 716px;
+}
+
+
+.container{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.8);  
+	margin-top: 80px;
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+#picture{
+	background-image: url('../Images/jogjakarta.jpg');
+	background-size: cover;
+	min-height: 600px;
+}
+
+label{
+	font-size: 2em;
+}
+#login-form{
+	background-color: #020a1d;
+	color: white;
+	padding: 50px;
+	min-height: 600px;
+	 position: relative;
+}
+.form-control{
+	border-style: none none solid none;
+	background-color: transparent;
+	box-shadow: none;
+	border-radius: 0px;
+	color: white;
+}
+
+.btn-masuk{
+
+	background-color: #296ff1;
+	color: white;
+	font-size: 1.5em;
+	border-radius: 10px;
+	padding: 10px 50px ;
+	display: block;
+	margin: auto;
+	margin-top: 60px;
+}
+
+a{
+	display: block;
+	text-align: center;
+	color: white;
+}
+.forgot{
+	margin-top: 10px;
+}
+#login-form .register{
+	margin-top: 166px;
+}
+
+@media only screen and (min-width: 768px){
+	#picture{
+		width: 52% !important;
+	}
+	#login-form{
+		width: 48% !important;
+	}
+}
+
+@media only screen and (max-width: 768px){
+	#picture{
+		width: 52%;
+	}
+	#login-form{
+		width: 48%;
+	}
+}
+
+@media only screen and (max-width: 600px){
+	#picture{
+		display: none;
+	}
+	#login-form{
+		width: 100%;
+	}
+}

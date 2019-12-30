@@ -1,0 +1,76 @@
+@font-face {
+	font-family: OpenSans;
+	src : url(../fonts/OpenSans-Regular.ttf);
+}
+
+body{
+	font-family: 'OpenSans'; 
+}
+
+.navbar-default{
+	background-color: #151f47;
+	border-style: none;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: #fca000;
+	border-style: none none solid none;
+	border-color: #fca000;
+	padding-bottom: 10px;
+}
+
+.headline{
+	font-weight: bolder;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.col-xs-6, .col-sm-6{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.middle {
+  width: 75%;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+.col-xs-6:hover img{
+	filter: brightness(20%);
+}
+.col-xs-6:hover .middle{
+  	opacity: 1;
+}
+
+@media only screen and (max-width: 1200px){
+	.text > h1 {
+		font-size: 1.3em;
+	}
+	.text > h4 {
+		font-size: 0.5em;
+	}
+}
+
+@media only screen and (max-width: 768px){
+	.text > h1 {
+		font-size: 1em;
+	}
+}
+

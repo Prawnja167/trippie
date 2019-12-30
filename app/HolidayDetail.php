@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class HolidayDetail extends Model
 {
-    protected $fillable=['date_detail_id','start_time','end_time','price','activity'];
+    protected $fillable=['date_holiday_id','start_time','end_time','price','activity'];
 
     public function dateHoliday(){
-        return $this->belongsTo('App\HolidayDetail');
+        return $this->belongsTo('App\DateHoliday');
     }
 }

@@ -31,7 +31,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Holiday');
     }
 
-    public function dateHoliday(){
-        return $this->hasMany('App\DateHoliday');
+    public function wishlist(){
+        return $this->hasMany('App\Wishlist');
     }
 }

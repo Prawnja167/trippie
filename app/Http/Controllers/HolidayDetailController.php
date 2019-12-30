@@ -33,12 +33,10 @@ class HolidayDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request ,$list)
+    public function store(Request $request, $list)
     {
-        $holiday = DateHoliday::find($list);
-        
+        $holiday = DateHoliday::find($request->date);
         $detail = $holiday->detailHoliday()->create($request->all());
-        
         return redirect('/list/'.$list);
     }
 

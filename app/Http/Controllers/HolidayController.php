@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\HolidayDetail;
 use App\DateHoliday;
 use App\Holiday;
 use App\User;
 use Auth;
+use DB;
 
 class HolidayController extends Controller
 {
@@ -26,11 +28,12 @@ class HolidayController extends Controller
             for($x = 1 ; $x <= count($holidays) ; $x++){
                 $dateHoliday = Holiday::find($z[0][$x-1]->id);
                 $y[($x-1)] = $dateHoliday->dateHoliday()->get();
-                $holidays[($x-1)]['start'] = $y[($x-1)][0]->date;
-                $holidays[($x-1)]['end'] = $y[($x-1)][(count($y[($x-1)])-1)]->date;
+                $holidays[($x-1)]['start'] = date_create($y[($x-1)][0]->date);
+                $holidays[($x-1)]['start'] = date_format($holidays[($x-1)]['start'],"d F");
+                $holidays[($x-1)]['end'] = date_create($y[($x-1)][(count($y[($x-1)])-1)]->date);
+                $holidays[($x-1)]['end'] = date_format($holidays[($x-1)]['end'],"d F");
             }
         }
-        
         return view('holiday',compact('holidays'));
     }
 
@@ -57,11 +60,11 @@ class HolidayController extends Controller
        
         $holiday=$request->except('image');
         $holiday['image']=$request->file('image')->getClientOriginalName();
-        $request->file('image')->move('../public/images/',$holiday['image']);
+        $request->file('image')->move('../public/Images/trip/',$holiday['image']);
         $holiday=$user->holiday()->create([
             'title'=>$request['title'],
             'cost'=>$request['cost'],
-            'image'=>$request['image']
+            'image'=>$holiday['image']
         ]);
         $holidayFind = Holiday::find($holiday['id']);
 
@@ -80,7 +83,6 @@ class HolidayController extends Controller
                 'date' => $date[$x],
             ]);
         } 
-
         return redirect('list');
     }
 
@@ -94,10 +96,25 @@ class HolidayController extends Controller
     {
         $holiday = Holiday::find($id);
         $holidayDate = Holiday::find($id)->dateHoliday()->get();
-        // $holiday['start'] = $holidayDate[0]['date'];
-        // $holiday['end'] = $holidayDate[count($holidayDate)-1]['date'];
         $holiday['date'] = $holidayDate;
-        return view('plan',compact('holiday'));
+
+        for($x = 0 ; $x < count($holiday['date']) ; $x++){
+            $holiday['date'][$x]['date'] = date_create($holiday['date'][$x]['date']);
+            $holiday['date'][$x]['date'] = date_format($holiday['date'][$x]['date'],"d F Y");
+        }
+        
+        $holiday['start'] = $holiday['date'][0]['date'];
+        $holiday['end'] = $holiday['date'][count($holidayDate)-1]['date'];
+        
+        
+        $activities = DB::table('holidays')
+                    ->join('date_holidays','holidays.id','=','date_holidays.holiday_id')
+                    ->join('holiday_details','date_holidays.id','=','holiday_details.date_holiday_id')
+                    ->where('holiday_id',$id)
+                    ->where('user_id',Auth::user()->id)
+                    ->get();
+        
+        return view('plan',compact('holiday','activities'));
     }
 
     /**
@@ -131,6 +148,7 @@ class HolidayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Holiday::find($id)->delete();
+        return redirect('list');
     }
 }
