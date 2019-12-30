@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::resource('/list/{list}/detail','HolidayDetailController');
     Route::resource('/list','HolidayController');
+    Route::post('/list/store','HolidayDetailController@storeHolidayPlan');
 });
 
 Route::resource('/place','PlaceController');	

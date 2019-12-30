@@ -68,7 +68,7 @@
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <select name="" id="input" class="form-control" required="required">
                         @foreach($holiday->date as $date)
-                            <option value="">{{$date->date}}</option>
+                            <option value="{{$date->id}}">{{$date->date}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -85,21 +85,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="row1">
-                        <td id="start1">06.00</td>
-                        <td id="end1">-</td>
+                    <tr id="row1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event)">
+                        <td id="start1"></td>
+                        <td id="end1"></td>
                         <td id="price1">-</td>
-                        <td id="description1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>                  
+                        <td id="description1"></td>                  
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <form action="/list/store" method="POST">
+                    @csrf
+                    <input type="hidden" id="db-start" name="start">
+                    <input type="hidden" id="db-end" name="end">
+                    <input type="hidden" id="db-cost" name="cost">
+                    <input type="hidden" id="db-place" name="place">
+                    <input type="hidden" id="db-date" name="date">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
+            </div>
         </div>
         <div class="wishlist col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <h2 style="color: #fca000">Wishlist</h2>
             <hr style="border-color: #fca000">
             @foreach ($wishlists as $wishlist)
-            <div>
-                <h4>{{$wishlist->name}}</h4>
+            <div id='drag{{$wishlist->id}}' draggable="true" ondragstart="drag(event)" ondrop="drop1(event)" ondragover="allowDrop(event)">
+                <a href="{{url('/place/'.$wishlist->id)}}" style="text-decoration: none; color:orange"><h4>{{$wishlist->name}}</h4></a>
+                <input type="hidden" id='dur{{$wishlist->id}}' value='{{$wishlist->duration}}'>
             </div>
             @endforeach
         </div>
@@ -107,6 +119,64 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVb6byfNVvArVNCh7jeUmj_oDjQgNHd8c"></script>
+<script>
+    var id = 2
+    var start = 6
+    var end = 0
 
+    var db_start = []
+    var db_end = []
+    var db_activity = []
+    var db_cost = []
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+      
+      var place_id = data.substring(4)
+      var duration = document.getElementById('dur'+place_id).value
+      console.log(duration)
+      var end = parseInt(start)+parseInt(duration)
+      $("table").append('<tr id="row'+id+'" ondrop="drop(event)" ondragover="allowDrop(event)">'+
+      '<td id="start'+id+'"></td>'+
+      '<td id="end'+id+'"></td>'+
+      '<td id="price'+id+'">-</td>'+
+      '<td id="description'+id+'"></td></tr>')
+    //   console.log(document.getElementById("start"+(id-1)))
+      document.getElementById("start"+(id-1)).append(start)
+      document.getElementById("end"+(id-1)).append(end)
+      
+      db_start.push(start)
+      db_end.push(end)
+      db_activity.push(place_id)
+      db_cost.push(100)
+      console.log(db_start)
+
+      document.getElementById("db-start").value = db_start;
+      document.getElementById("db-end").value = db_end;
+      document.getElementById("db-cost").value = db_cost;
+      document.getElementById("db-place").value = db_activity;
+      document.getElementById("db-date").value = document.getElementById("input").value;
+      console.log(document.getElementById("db-date").value)
+
+      id++
+      start = end
+    }
+    function drop1(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+    //   document.getElementById("row4").remove();
+    }
+    </script>
 </body>
 </html>
