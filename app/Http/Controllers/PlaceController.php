@@ -75,7 +75,15 @@ class PlaceController extends Controller
         for($i = $id ; $i < ($id+3) ; $i++){
             $recs[$i] = Place::find($i+1);
         }
-        return view('place',compact('place','recs'));
+        $isWishlisted = false;
+        if (Auth::check()) {
+            $temp = Wishlist::where('user_id', Auth::user()->id)->where('place_id',$place->id)->first();
+            if ($temp) {
+                $isWishlisted = true;
+            }
+        }
+        
+        return view('place',compact('place','recs','isWishlisted'));
     }
 
     /**

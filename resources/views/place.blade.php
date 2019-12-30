@@ -93,11 +93,15 @@
 			  			</tr>
 			  		</tbody>
 			  	</table>
-			  	@if(Auth::user())
-			  	<form action="{{url('wishlist/'.$place->id)}}" method="POST" role="form">
-			  		@csrf
-			  		<button type="submit" class="btn btn-danger">Add to Wishlist</button>
-			  	</form>
+				@if(Auth::user())
+					@if($isWishlisted)
+					<button type="submit" class="btn btn-danger" disabled>Wishlisted</button>
+					@else
+					<form action="{{url('wishlist/'.$place->id)}}" method="POST" role="form">
+						@csrf
+						<button type="submit" class="btn btn-danger">Add to Wishlist</button>
+				  	</form>
+					@endif
 				@endif
 				<!-- Tab panes -->
 				<div class="tab-content">

@@ -87,48 +87,15 @@
 	<div class="container-fluid text-center" id="trip">
 		<h1 id="fav-head">SHAREABLE TRIPS</h1>
 		<section class="variable slider">
-		    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-lg-offset-1 share">
-				<img src="{{asset('images/kesuma.jpg')}}" class="img-responsive" alt="Image">
-				<div class="share-content container-fluid">
-					<h2>Dummy Trip</h2>
-					<h4>14 Dec 2018 - 25 Dec 2018</h4>
-				</div>
-			</div>
+			@foreach ($trips as $i=>$trip)
 			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-lg-offset-1 share">
-				<img src="{{asset('images/kesuma.jpg')}}" class="img-responsive" alt="Image">
+				<img src="{{asset('images/Trip/'.$trip->image)}}" class="img-responsive" alt="Image">
 				<div class="share-content container-fluid">
-					<h2>Dummy Trip</h2>
-					<h4>14 Dec 2018 - 25 Dec 2018</h4>
+					<h2>{{$trip->title}}</h2>
+					<h4>{{$start[$i]}} - {{$end[$i]}}</h4>
 				</div>
 			</div>
-			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-lg-offset-1 share">
-				<img src="{{asset('images/kesuma.jpg')}}" class="img-responsive" alt="Image">
-				<div class="share-content container-fluid">
-					<h2>Dummy Trip</h2>
-					<h4>14 Dec 2018 - 25 Dec 2018</h4>
-				</div>
-			</div>
-			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-lg-offset-1 share">
-				<img src="{{asset('images/kesuma.jpg')}}" class="img-responsive" alt="Image">
-				<div class="share-content container-fluid">
-					<h2>Dummy Trip</h2>
-					<h4>14 Dec 2018 - 25 Dec 2018</h4>
-				</div>
-			</div>
-			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-lg-offset-1 share">
-				<img src="{{asset('images/kesuma.jpg')}}" class="img-responsive" alt="Image">
-				<div class="share-content container-fluid">
-					<h2>Dummy Trip</h2>
-					<h4>14 Dec 2018 - 25 Dec 2018</h4>
-				</div>
-			</div>
-			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-lg-offset-1 share">
-				<img src="{{asset('images/kesuma.jpg')}}" class="img-responsive" alt="Image">
-				<div class="share-content container-fluid">
-					<h2>Dummy Trip</h2>
-					<h4>14 Dec 2018 - 25 Dec 2018</h4>
-				</div>
-			</div>
+			@endforeach
 		</section>
 		
 	</div>

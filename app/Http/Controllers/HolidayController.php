@@ -9,6 +9,7 @@ use App\Holiday;
 use App\User;
 use Auth;
 use DB;
+use App\Wishlist;
 
 class HolidayController extends Controller
 {
@@ -113,8 +114,13 @@ class HolidayController extends Controller
                     ->where('holiday_id',$id)
                     ->where('user_id',Auth::user()->id)
                     ->get();
+
+        $wishlists = DB::table('wishlists')
+        ->join('places','places.id','=','wishlists.place_id')
+        ->where('user_id',Auth::user()->id)
+        ->get();
         
-        return view('plan',compact('holiday','activities'));
+        return view('plan',compact('holiday','activities','wishlists'));
     }
 
     /**

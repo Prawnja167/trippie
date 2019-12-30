@@ -97,23 +97,11 @@
         <div class="wishlist col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <h2 style="color: #fca000">Wishlist</h2>
             <hr style="border-color: #fca000">
+            @foreach ($wishlists as $wishlist)
             <div>
-                <h4></h4>
-                <div>
-                    <h4></h4>
-                    <h4></h4>
-                    <h4></h4>
-                </div>
+                <h4>{{$wishlist->name}}</h4>
             </div>
-            
-            <div id="drag3" draggable="true" ondragstart="drag(event)">
-                <h4 id="drag3-activity"></h4>
-                <div class="hidden">
-                    <h4 id="drag3-price"></h4>
-                    <h4 id="drag3-duration"></h4>
-                    <h4 id="drag3-address"></h4>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -58,10 +58,14 @@
             </div>
         </nav>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-bottom: 2vh">
         <h1 class="headline">My Holiday List</h1>
-
-        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4"  data-toggle="modal" data-target="#myModal">
+        <h3 style="margin-left:1.2vw">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Add a New Plan
+            </button>
+        </h3>
+        {{-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" data-toggle="modal" data-target="#myModal">
             <img src="{{asset('Images/fav1.jpg')}}" class="img-responsive" alt="Image">
             <div class="middle">
                 <div class="text">
@@ -69,7 +73,8 @@
                     <h3>Add a New Plan</h3>
                 </div>
             </div>
-        </div>
+        </div> --}}
+
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
