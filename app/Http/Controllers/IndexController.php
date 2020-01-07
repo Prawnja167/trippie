@@ -30,7 +30,8 @@ class IndexController extends Controller
 
     public function city($id){
     	$places = Place::with('City')->where('city_id',$id)->get();
-    	$city = City::find($id);
+		$city = City::find($id);
+		// dd($places);
     	return view('city',compact('city','places'));
     }
 }

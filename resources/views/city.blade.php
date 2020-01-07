@@ -92,7 +92,7 @@
 			    <div id="home" class="tab-pane fade in active">
 			      <section class="variable slider">
 			      	@foreach($places as $place)
-			      		@if($place->category == 'landscape')
+			      		@if($place->category == 'Landscape')
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
@@ -106,7 +106,7 @@
 			    <div id="menu1" class="tab-pane fade in">
 			      <section class="variable slider">
 				    @foreach($places as $place)
-			      		@if($place->category == 'historical & religious')
+			      		@if($place->category == 'Historical & Religious')
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
@@ -120,7 +120,7 @@
 			    <div id="menu2" class="tab-pane">
 			      <section class="variable slider" onload="">
 				    @foreach($places as $place)
-			      		@if($place->category == 'hotels')
+			      		@if($place->category == 'Hotels')
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
@@ -134,7 +134,7 @@
 			    <div id="menu3" class="tab-pane fade">
 			      <section class="variable slider">
 				    @foreach($places as $place)
-			      		@if($place->category == 'restaurant')
+			      		@if($place->category == 'Restaurant')
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
