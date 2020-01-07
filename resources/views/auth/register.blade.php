@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="{{asset('css/register.css')}}">
 </head>
 <body>
-    <h3 class="container-fluid">MASUK</h3>
+    <h3 class="container-fluid"><a href="{{route('login')}}" style="color:white; text-decoration:none">MASUK</a></h3>
     <div class="container">
-        <h2>Mau atur libur idaman kalian? Ya, di Atur Libur</h2>
+        <h2>Mau atur libur idaman kalian? Ya, di Trippie</h2>
         <form action="{{ route('register') }}" method="POST" role="form">
             @csrf
             <div class="form-group">

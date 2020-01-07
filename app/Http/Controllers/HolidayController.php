@@ -10,6 +10,7 @@ use App\User;
 use Auth;
 use DB;
 use App\Wishlist;
+use App\Place;
 
 class HolidayController extends Controller
 {
@@ -121,9 +122,15 @@ class HolidayController extends Controller
         ->get();
 
         $activities = HolidayDetail::all();
+        $places = [];
+        foreach($activities as $a) {
+            $p = Place::find($a->activity);
+            array_push($places, $p);
+        }
+        // dd($places);
         // dd($activities);
         
-        return view('plan',compact('holiday','activities','wishlists'));
+        return view('plan',compact('holiday','activities','places','wishlists'));
     }
 
     /**

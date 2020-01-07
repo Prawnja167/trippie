@@ -85,22 +85,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($activities as $activity)
+                    @foreach($activities as $i=>$activity)
                     <tr>
                         <td>{{$activity->start_time}}</td>
                         <td>{{$activity->end_time}}</td>
                         <td>{{$activity->price}}</td>
-                        <td>{{$activity->activity}}</td>
+                        <td><a href="{{url('/place/'.$places[$i]->id)}}" style="text-decoration: none; color:orange"><h4>{{$places[$i]->name}}</h4></a></td>
                     </tr>
                     @endforeach
-                    @if (!$activities)
+                    {{-- @if (!$activities) --}}
                     <tr id="row1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event)">
                         <td id="start1"></td>
                         <td id="end1"></td>
                         <td id="price1">-</td>
                         <td id="description1"></td>                  
                     </tr>
-                    @endif
+                    {{-- @endif --}}
                 </tbody>
             </table>
             <div>
@@ -111,7 +111,7 @@
                     <input type="hidden" id="db-cost" name="cost">
                     <input type="hidden" id="db-place" name="place">
                     <input type="hidden" id="db-date" name="date">
-                    <input type="hidden" id="activity-date" value="{{$activities[0]->date_holiday_id}}">
+                    {{-- <input type="hidden" id="activity-date" value="{{$activities[0]->date_holiday_id}}"> --}}
                     {{-- @if($activities[0]->date_holiday_id == 18) --}}
                     <button id="submit-button" type="submit" class="btn btn-success">Save</button>
                     {{-- @endif --}}

@@ -9,6 +9,7 @@ use App\HolidayDetail;
 class HolidayDetailController extends Controller
 {
     public function storeHolidayPlan(Request $request) {
+        // dd($request);
         $start = explode(",",$request->start);
         $end = explode(",",$request->end);
         $cost = explode(",",$request->cost);
