@@ -120,7 +120,7 @@
 			    <div id="menu2" class="tab-pane">
 			      <section class="variable slider" onload="">
 				    @foreach($places as $place)
-			      		@if($place->category == 'Hotels')
+			      		@if($place->category == 'Hotel')
 				    		<div>
 				      			<img style="height: 250px;" src="{{asset('images/'.$place->image)}}">
 				      			<div class="overlay">
