@@ -99,7 +99,9 @@
             <tr>
                 <th class="text-center">City</th>
                 <th class="text-center">Place</th>
+                <th class="text-center">Category</th>
                 <th class="text-center">Rating</th>
+                <th class="text-center">Opening Time</th>
                 <th class="text-center">Image</th>
                 <th class="text-center">Map</th>
             </tr>
@@ -108,10 +110,12 @@
             @foreach($places as $place)
             @if($place->status == 1)
             <tr>
-                <td style="width:10%"><a href="{{url('/city/'.$place->city->id)}}" style="text-decoration: none;">{{$place->city->name}}</a></td>
-                <td style="width:10%"><a href="{{url('/place/'.$place->id)}}" style="text-decoration: none;">{{$place->name}}</a></td>
-                <td style="width:10%">{{$place->rating}}</td>
-                <td style="width:20%"><img src="/images/{{$place->image}}" style="width: 150px"></td> 
+                <td><a href="{{url('/city/'.$place->city->id)}}" style="text-decoration: none;">{{$place->city->name}}</a></td>
+                <td><a href="{{url('/place/'.$place->id)}}" style="text-decoration: none;">{{$place->name}}</a></td>
+                <td>{{$place->category}}</td>
+                <td>{{$place->rating}}</td>
+                <td>{{$place->opening}}</td>
+                <td><img src="/images/{{$place->image}}" style="width: 180px"></td> 
                 <td style="width:30%; height:20vh">
                     <script>
                         findLoc('{{$place->address}}', '{{$place->id}}');
